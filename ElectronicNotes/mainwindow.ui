@@ -78,7 +78,7 @@ font: 75 16pt &quot;Ubuntu Condensed&quot;;</string>
     <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
    <property name="text">
-    <string>修改信息</string>
+    <string/>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">

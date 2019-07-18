@@ -29,17 +29,20 @@ SOURCES += \
     src/mainwindow.cpp \
     src/register.cpp \
     src/query.cpp \
-    src/addnotes.cpp
+    src/addnotes.cpp \
+    src/findpassword.cpp
 
 HEADERS += \
     include/mainwindow.h \
     include/storage.h \
     include/register.h \
     include/query.h \
-    include/addnotes.h
+    include/addnotes.h \
+    include/findpassword.h
 
 FORMS += \
         mainwindow.ui \
     register.ui \
     query.ui \
-    addnotes.ui
+    addnotes.ui \
+    findpassword.ui

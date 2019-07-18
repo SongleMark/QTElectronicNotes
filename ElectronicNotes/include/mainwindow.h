@@ -5,6 +5,7 @@
 #include "include/register.h"
 #include "include/storage.h"
 #include "include/query.h"
+#include "include/findpassword.h"
 
 namespace Ui {
 class Mainwindow;
@@ -18,6 +19,7 @@ public:
     explicit Mainwindow(QWidget *parent = 0);
     ~Mainwindow();
     bool LoginNote();
+    bool eventFilter(QObject *watched, QEvent *event);
 
 private slots:
     void RegisterClicked();
@@ -29,6 +31,7 @@ private:
     Storage *mysql;
     QString name;
     Query *query;
+    FindPassword *find;
 };
 
 #endif // MAINWINDOW_H

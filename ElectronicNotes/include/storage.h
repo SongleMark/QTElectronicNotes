@@ -49,6 +49,8 @@ public:
     NOTES GetNotes(int i);
     int GetNumOfNote(QString book);
     QString GetQueryInfo(QString note, QString user);//根据搜索框内容查询笔记
+    QString GetEmil(QString tel);
+    void ModifyPassword(QString tel, QString password);
     ~Storage();
 private:
     Storage();

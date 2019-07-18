@@ -381,12 +381,40 @@ QString Storage::GetQueryInfo(QString note,QString user)
             {
                 return content;
             }
-            else {
+            else
+            {
                 continue;
             }
         }
 
     }
 
+}
+
+//重置密码时先根据电话查找emil
+QString Storage::GetEmil(QString tel)
+{
+    QString sql = QString("select emil from %1 where tel='%2';").arg(TABLE).arg(tel);
+    qDebug() << "sql = " << sql;
+    QString emil;
+    mysql_info.query->exec(sql);
+    if(mysql_info.query->next())
+    {
+        emil = mysql_info.query->value(0).toString();
+        qDebug() << "emil = " << emil;
+    }
+
+    return emil;
+}
+
+//修改密码
+void Storage::ModifyPassword(QString tel,QString password)
+{
+    QString sql = QString("update %1 set password='%2' where tel='%3';")
+                         .arg(TABLE)
+                         .arg(password)
+                         .arg(tel);
+    qDebug() << "sql = " << sql;
+    mysql_info.query->exec(sql);
 }
 
