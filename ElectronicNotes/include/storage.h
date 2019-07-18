@@ -25,6 +25,7 @@ typedef struct NOTE
 {
     QString title;  //标题
     QString content;//内容
+    QString time;   //建立笔记的时间
 }NOTES;
 
 class Storage

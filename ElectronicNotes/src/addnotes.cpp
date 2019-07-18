@@ -1,13 +1,20 @@
 #include "include/addnotes.h"
 #include "ui_addnotes.h"
 #include <QMessageBox>
+#include <QDateTime>
 
 AddNotes::AddNotes(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AddNotes)
 {
     ui->setupUi(this);
+    move(500,250);
     mysql = Storage::getinstance();
+
+    connect(ui->clear,SIGNAL(clicked(bool)),this,SLOT(ClearClicked()));
+    connect(ui->addnote,SIGNAL(clicked(bool)),this,SLOT(AddnoteClicked()));
+    connect(ui->createbook,SIGNAL(clicked(bool)),this,SLOT(CreatebookClicked()));
+    connect(ui->originabook,SIGNAL(clicked(bool)),this,SLOT(CriginabookClicked()));
 }
 
 AddNotes::~AddNotes()
@@ -29,6 +36,8 @@ void AddNotes::GetinfoFromInput()
     }
     note.content = ui->contents->toPlainText();
     note.title = ui->title->text();
+    QDateTime current_time = QDateTime::currentDateTime();
+    note.time = current_time.toString("yyyy年MM月dd日hh:mm:ss");
 
 }
 
@@ -50,13 +59,13 @@ void AddNotes::GetUserFromQuery(QString user)
 }
 
 //点击清除
-void AddNotes::on_clear_clicked()
+void AddNotes::ClearClicked()
 {
     ui->contents->clear();
 }
 
 //点击添加笔记按钮
-void AddNotes::on_addnote_clicked()
+void AddNotes::AddnoteClicked()
 {
     int choose;
     choose = QMessageBox::question(this,"确认","是否添加笔记?",QMessageBox::Yes|QMessageBox::No);
@@ -67,7 +76,7 @@ void AddNotes::on_addnote_clicked()
         GetinfoFromInput();
         mysql->ConnectMysql();
         mysql->AddBooksFromMysql(booktable,user);//向数据库以用户名创建表名并加入笔记本名称
-        mysql->AddNotesToMysql(note,booktable);//向数据库加入笔记标题内容
+        mysql->AddNotesToMysql(note,booktable);//向数据库加入笔记标题内容建立时间
     }
     else if(choose == QMessageBox::No)
     {
@@ -78,7 +87,7 @@ void AddNotes::on_addnote_clicked()
 }
 
 //点击新建笔记本
-void AddNotes::on_createbook_clicked()
+void AddNotes::CreatebookClicked()
 {
     BookFlag = CREATE;
     ui->book->setEnabled(false);
@@ -86,7 +95,7 @@ void AddNotes::on_createbook_clicked()
 }
 
 //点击原有笔记本
-void AddNotes::on_originabook_clicked()
+void AddNotes::CriginabookClicked()
 {
     BookFlag = ORIGINAL;
     ui->book->setEnabled(true);

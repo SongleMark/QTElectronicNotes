@@ -19,17 +19,12 @@ public:
     void SetStartcombox();
 
 private slots:
-    void on_pushButton_add_clicked();
-
-    void on_comboBox_activated(int index);
-
-    void on_tableWidget_cellClicked(int row, int column);
-
-    void on_pushButton_pre_clicked();
-
-    void on_pushButton_next_clicked();
-
-    void on_pushButton_query_clicked();
+    void PushButtonAddClicked();
+    void ComboBoxActivated(int index);
+    void TableWidgetCellClicked(int row, int column);
+    void PushButtonPreClicked();
+    void PushButtonNextClicked();
+    void PushButtonQueryClicked();
 
 private:
     Ui::Query *ui;

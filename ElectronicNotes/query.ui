@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(46, 52, 54);</string>
   </property>
   <widget class="QPushButton" name="pushButton_pre">
    <property name="geometry">
@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
    <property name="text">
     <string>上一条</string>
@@ -42,7 +42,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
    <property name="text">
     <string>下一条</string>
@@ -58,7 +58,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
    <property name="text">
     <string>添加新笔记</string>
@@ -77,7 +77,7 @@
     <item>
      <widget class="QLabel" name="label_display">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;具体信息如下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -87,7 +87,7 @@
     <item>
      <widget class="QTextEdit" name="textEdit_show">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
      </widget>
     </item>
@@ -101,6 +101,9 @@
      <width>391</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -118,14 +121,14 @@
       <item>
        <widget class="QLineEdit" name="lineEdit_query">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">color: rgb(138, 226, 52);</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_query">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">color: rgb(138, 226, 52);</string>
         </property>
         <property name="text">
          <string>搜索</string>
@@ -137,7 +140,7 @@
     <item>
      <widget class="QTableWidget" name="tableWidget">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
      </widget>
     </item>

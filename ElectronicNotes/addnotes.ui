@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
+    <width>829</width>
     <height>692</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(46, 52, 54);</string>
   </property>
   <widget class="QPushButton" name="addnote">
    <property name="geometry">
@@ -24,6 +24,9 @@
      <width>89</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
    <property name="text">
     <string>添加</string>
@@ -38,11 +41,14 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(138, 226, 52);</string>
+   </property>
    <property name="text">
     <string>清除内容</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>1</x>
@@ -52,16 +58,6 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="label_display_2">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(114, 159, 207);</string>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;添加笔记&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0" colspan="2">
      <widget class="QPushButton" name="createbook">
       <property name="minimumSize">
@@ -71,7 +67,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
       <property name="text">
        <string>新建笔记本</string>
@@ -81,7 +77,9 @@
     <item row="1" column="2">
      <widget class="QLineEdit" name="notebook">
       <property name="styleSheet">
-       <string notr="true">color: rgb(138, 226, 52);</string>
+       <string notr="true">color: rgb(138, 226, 52);
+color: rgb(138, 226, 52);
+background-color: rgb(136, 138, 133);</string>
       </property>
      </widget>
     </item>
@@ -93,18 +91,26 @@
         <height>31</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(138, 226, 52);</string>
+      </property>
       <property name="text">
        <string>原有笔记本</string>
       </property>
      </widget>
     </item>
     <item row="2" column="2">
-     <widget class="QComboBox" name="book"/>
+     <widget class="QComboBox" name="book">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(138, 226, 52);
+background-color: rgb(136, 138, 133);</string>
+      </property>
+     </widget>
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_2">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
       <property name="text">
        <string>标题</string>
@@ -121,7 +127,7 @@
     <item row="4" column="0">
      <widget class="QLabel" name="label_4">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
       <property name="text">
        <string>内容</string>
@@ -131,7 +137,17 @@
     <item row="4" column="1" colspan="2">
      <widget class="QTextEdit" name="contents">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">color: rgb(138, 226, 52);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="label_display_2">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(138, 226, 52);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;添加笔记(请先点击新建笔记或原有笔记本)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>

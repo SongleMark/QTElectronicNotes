@@ -8,6 +8,7 @@ Register::Register(QWidget *parent) :
     ui(new Ui::Register)
 {
     ui->setupUi(this);
+    move(500,250);
     setWindowTitle("Register");
     ui->password->setPlaceholderText(QStringLiteral("密码不得少于6位"));
     ui->password->setEchoMode(QLineEdit::Password);
@@ -40,6 +41,7 @@ void Register::ClearRegisterInfo()
     ui->emil->clear();
     ui->password->clear();
     ui->tel->clear();
+    ui->password_sure->clear();
 }
 
 //点击注册按钮

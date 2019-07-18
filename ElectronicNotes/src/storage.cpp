@@ -230,15 +230,17 @@ void Storage::AddNotesToMysql(NOTES note,QString tables)
     QStringList table = mysql_info.db.tables();
     if(!table.contains(tables))
     {
-        QString sql = QString("CREATE TABLE %1 (notebook varchar(32),note varchar(2000));").arg(tables);
+        QString sql = QString("CREATE TABLE %1 (notetitle varchar(32),notecontent varchar(2000),time varchar(32));")
+                             .arg(tables);
         qDebug() << "sql = " << sql;
         mysql_info.query->exec(sql);
     }
 
-    QString sql = QString("insert into %1 values('%2','%3');")
+    QString sql = QString("insert into %1 values('%2','%3','%4');")
                          .arg(tables)
                          .arg(note.title)
-                         .arg(note.content);
+                         .arg(note.content)
+                         .arg(note.time);
     qDebug() << "sql = " << sql;
     mysql_info.query->exec(sql);
 
@@ -318,17 +320,20 @@ void Storage::ReadNotesFromMysql(QString user)
     {
         note[i].title = mysql_info.query->value(0).toString();
         note[i].content = mysql_info.query->value(1).toString();
-        qDebug() << "note[%1] = " << i << note[i].title;
+        note[i].time = mysql_info.query->value(2).toString();
+        //qDebug() << "note[%1] = " << i << note[i].title;
         i++;
     }
 
 }
 
+//向外部传输笔记本名
 QString Storage::Getbooklist(int i)
 {
     return booklist[i];
 }
 
+//向外部传输笔记标题内容和建立时间
 NOTES Storage::GetNotes(int i)
 {
     return note[i];
@@ -359,7 +364,7 @@ QString Storage::GetQueryInfo(QString note,QString user)
     int num = GetNumOfBook(user);//获取笔记本数量
     for( int i = 0 ; i<num ; i++ )
     {
-        QString sql = QString("select note from %1 where notebook='%2';").arg(booklist[i]).arg(note);
+        QString sql = QString("select notecontent from %1 where notetitle='%2';").arg(booklist[i]).arg(note);
         qDebug() << "sql = " << sql;
         mysql_info.query->exec(sql);
         if(mysql_info.query->next())

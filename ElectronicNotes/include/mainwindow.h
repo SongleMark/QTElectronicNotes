@@ -17,12 +17,11 @@ class Mainwindow : public QWidget
 public:
     explicit Mainwindow(QWidget *parent = 0);
     ~Mainwindow();
-    bool LoginDictionary();
+    bool LoginNote();
 
 private slots:
     void RegisterClicked();
-
-    void on_login_clicked();
+    void LoginClicked();
 
 private:
     Ui::Mainwindow *ui;

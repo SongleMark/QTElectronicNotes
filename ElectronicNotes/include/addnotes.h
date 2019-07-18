@@ -25,16 +25,16 @@ public:
     void GetUserFromQuery(QString user);
 
 private slots:
-    void on_clear_clicked();
-    void on_addnote_clicked();
-    void on_createbook_clicked();
-    void on_originabook_clicked();
+    void ClearClicked();
+    void AddnoteClicked();
+    void CreatebookClicked();
+    void CriginabookClicked();
 
 private:
     Ui::AddNotes *ui;
     Storage *mysql;
     NOTES note;
-    int BookFlag;
+    int BookFlag = CREATE;
     QString booktable; //笔记本(在数据库中为表,没一个笔记本一个表)
     QString user;
     QString booklist[NUM];

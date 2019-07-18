@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>497</width>
-    <height>435</height>
+    <width>484</width>
+    <height>421</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,7 +78,7 @@ font: 75 16pt &quot;Ubuntu Condensed&quot;;</string>
     <string notr="true">color: rgb(138, 226, 52);</string>
    </property>
    <property name="text">
-    <string>忘记密码</string>
+    <string>修改信息</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">

@@ -7,7 +7,16 @@ Query::Query(QWidget *parent) :
     ui(new Ui::Query)
 {
     ui->setupUi(this);
+    move(500,250);
     add = new AddNotes();
+
+    connect(ui->pushButton_add,SIGNAL(clicked(bool)),this,SLOT(PushButtonAddClicked()));
+    connect(ui->comboBox,SIGNAL(activated(int)),this,SLOT(ComboBoxActivated(int)));
+    connect(ui->tableWidget,SIGNAL(cellClicked(int,int)),this,SLOT(TableWidgetCellClicked(int,int)));
+    connect(ui->pushButton_pre,SIGNAL(clicked(bool)),this,SLOT(PushButtonPreClicked()));
+    connect(ui->pushButton_next,SIGNAL(clicked(bool)),this,SLOT(PushButtonNextClicked()));
+    connect(ui->pushButton_query,SIGNAL(clicked(bool)),this,SLOT(PushButtonQueryClicked()));
+
 }
 
 Query::~Query()
@@ -41,13 +50,15 @@ void Query::SetStartcombox()
 }
 
 //点击添加新笔记按钮
-void Query::on_pushButton_add_clicked()
+void Query::PushButtonAddClicked()
 {
     add->show();
 }
 
-void Query::on_comboBox_activated(int index)
+//点击不同的笔记本combox时在tablewidget列出笔记标题
+void Query::ComboBoxActivated(int index)
 {
+    ui->textEdit_show->clear();
     mysql->ReadNotesFromMysql(booklist[index]);
     num_book = mysql->GetNumOfNote(booklist[index]);
 
@@ -58,10 +69,10 @@ void Query::on_comboBox_activated(int index)
 
 
     ui->tableWidget->setRowCount(num_book);
-    ui->tableWidget->setColumnCount(1);
+    ui->tableWidget->setColumnCount(2);
 
     QStringList header;
-    header << QStringLiteral("笔记标题") ;
+    header << QStringLiteral("笔记标题") << QStringLiteral("建立时间");
     ui->tableWidget->setHorizontalHeaderLabels(header);
 
     //设置tablewidget的行自动填充
@@ -72,12 +83,20 @@ void Query::on_comboBox_activated(int index)
     for( row = 0 ; row<num_book ; row++ )
     {
         ui->tableWidget->setItem(row , 0 , new QTableWidgetItem(note[row].title));
+        ui->tableWidget->setItem(row , 1 , new QTableWidgetItem(note[row].time));
     }
 }
 
 //点击笔记列表会在右侧显示笔记内容
-void Query::on_tableWidget_cellClicked(int row, int column)
+void Query::TableWidgetCellClicked(int row, int column)
 {
+    if(column == 1)
+    {
+        ui->textEdit_show->clear();
+        QMessageBox::information(NULL,"请点击左侧内容","点击错误",
+                                 QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+        return ;
+    }
     QString title = ui->tableWidget->item(row,column)->text();
     QString content;
 
@@ -101,7 +120,7 @@ void Query::on_tableWidget_cellClicked(int row, int column)
 }
 
 //点击上一张按钮
-void Query::on_pushButton_pre_clicked()
+void Query::PushButtonPreClicked()
 {
     if(ui->tableWidget->item(pushbutton_row,pushbutton_column) == NULL)
     {
@@ -142,7 +161,7 @@ void Query::on_pushButton_pre_clicked()
 }
 
 //点击下一张按钮
-void Query::on_pushButton_next_clicked()
+void Query::PushButtonNextClicked()
 {
     if(ui->tableWidget->item(pushbutton_row,pushbutton_column) == NULL)
     {
@@ -183,7 +202,7 @@ void Query::on_pushButton_next_clicked()
 }
 
 //点击搜索按钮
-void Query::on_pushButton_query_clicked()
+void Query::PushButtonQueryClicked()
 {
     QString title = ui->lineEdit_query->text();
     QString content = mysql->GetQueryInfo(title,user);

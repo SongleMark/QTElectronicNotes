@@ -8,6 +8,7 @@ Mainwindow::Mainwindow(QWidget *parent) :
     ui(new Ui::Mainwindow)
 {
     ui->setupUi(this);
+    move(500,250);
     setWindowTitle("Electronic Notes");
     ui->user->setPlaceholderText(QStringLiteral("请输入邮箱或电话号码"));
     ui->password->setPlaceholderText(QStringLiteral("请输入密码"));
@@ -16,6 +17,7 @@ Mainwindow::Mainwindow(QWidget *parent) :
 
 
     connect(ui->register_2,SIGNAL(clicked(bool)),this,SLOT(RegisterClicked()));
+    connect(ui->login,SIGNAL(clicked(bool)),this,SLOT(LoginClicked()));
 }
 
 Mainwindow::~Mainwindow()
@@ -30,7 +32,8 @@ void Mainwindow::RegisterClicked()
     register_r->show();
 }
 
-bool Mainwindow::LoginDictionary()
+//判断登录密码数否正确
+bool Mainwindow::LoginNote()
 {
     name = ui->user->text();
     mysql->ConnectMysql();
@@ -46,9 +49,10 @@ bool Mainwindow::LoginDictionary()
 
 }
 
-void Mainwindow::on_login_clicked()
+//点击登录按钮槽函数
+void Mainwindow::LoginClicked()
 {
-    bool falg = LoginDictionary();
+    bool falg = LoginNote();
     qDebug() << "flag = " << falg;
 
     if(falg)
