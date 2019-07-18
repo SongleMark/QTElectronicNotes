@@ -22,6 +22,7 @@ private slots:
     void PushButtonAddClicked();
     void ComboBoxActivated(int index);
     void TableWidgetCellClicked(int row, int column);
+    void PushButtonUpdateClicked();
     void PushButtonPreClicked();
     void PushButtonNextClicked();
     void PushButtonQueryClicked();

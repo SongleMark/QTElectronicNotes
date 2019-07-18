@@ -31,7 +31,7 @@ Storage::~Storage()
 bool Storage::ConnectMysql()
 {
     mysql_info.db = QSqlDatabase::addDatabase("QMYSQL");
-    mysql_info.db.setDatabaseName("dictionary");
+    mysql_info.db.setDatabaseName("ElectronicNotebook");
     mysql_info.db.setUserName("root");
     mysql_info.db.setHostName("localhost");
     mysql_info.db.setPort(3306);
@@ -64,7 +64,9 @@ void Storage::AddValueToMysql(USER_INFO user_info)
         mysql_info.query->exec(sql);
     }
 
-    QString sql_check = QString("select count('%1') from %2;").arg(user_info.name).arg(TABLE);
+    QString sql_check = QString("select count(*) from %1 where name='%2';")
+                               .arg(TABLE)
+                               .arg(user_info.name);
     qDebug() << "sql_check = " << sql_check;
     mysql_info.query->exec(sql_check);
 
@@ -79,7 +81,9 @@ void Storage::AddValueToMysql(USER_INFO user_info)
         }
     }
 
-    QString sql_check_tel = QString("select count('%1') from %2;").arg(user_info.tel).arg(TABLE);
+    QString sql_check_tel = QString("select count(*) from %1 where tel='%2';")
+                               .arg(TABLE)
+                               .arg(user_info.tel);
     qDebug() << "sql_check_tel = " << sql_check_tel;
     mysql_info.query->exec(sql_check_tel);
 
@@ -94,7 +98,9 @@ void Storage::AddValueToMysql(USER_INFO user_info)
         }
     }
 
-    QString sql_check_emil = QString("select count('%1') from %2;").arg(user_info.emil).arg(TABLE);
+    QString sql_check_emil = QString("select count(*) from %1 where emil='%2';")
+                               .arg(TABLE)
+                               .arg(user_info.emil);
     qDebug() << "sql_check_emil = " << sql_check_emil;
     mysql_info.query->exec(sql_check_emil);
 

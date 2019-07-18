@@ -12,6 +12,7 @@ Query::Query(QWidget *parent) :
 
     connect(ui->pushButton_add,SIGNAL(clicked(bool)),this,SLOT(PushButtonAddClicked()));
     connect(ui->comboBox,SIGNAL(activated(int)),this,SLOT(ComboBoxActivated(int)));
+    connect(ui->pushButton_update,SIGNAL(clicked(bool)),this,SLOT(PushButtonUpdateClicked()));
     connect(ui->tableWidget,SIGNAL(cellClicked(int,int)),this,SLOT(TableWidgetCellClicked(int,int)));
     connect(ui->pushButton_pre,SIGNAL(clicked(bool)),this,SLOT(PushButtonPreClicked()));
     connect(ui->pushButton_next,SIGNAL(clicked(bool)),this,SLOT(PushButtonNextClicked()));
@@ -61,6 +62,44 @@ void Query::ComboBoxActivated(int index)
     ui->textEdit_show->clear();
     mysql->ReadNotesFromMysql(booklist[index]);
     num_book = mysql->GetNumOfNote(booklist[index]);
+
+    for(int i = 0 ; i<num_book ; i++)
+    {
+        note[i] = mysql->GetNotes(i);
+    }
+
+
+    ui->tableWidget->setRowCount(num_book);
+    ui->tableWidget->setColumnCount(2);
+
+    QStringList header;
+    header << QStringLiteral("笔记标题") << QStringLiteral("建立时间");
+    ui->tableWidget->setHorizontalHeaderLabels(header);
+
+    //设置tablewidget的行自动填充
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    //将数据显示在tablewidget上
+    int row = 0;
+    for( row = 0 ; row<num_book ; row++ )
+    {
+        ui->tableWidget->setItem(row , 0 , new QTableWidgetItem(note[row].title));
+        ui->tableWidget->setItem(row , 1 , new QTableWidgetItem(note[row].time));
+    }
+}
+
+//点击更新按钮
+void Query::PushButtonUpdateClicked()
+{
+    SetStartcombox();
+    ui->textEdit_show->clear();
+    mysql->ReadNotesFromMysql(booklist[0]);
+    num_book = mysql->GetNumOfNote(booklist[0]);
+
+    if(booklist[0].isEmpty())
+    {
+        return ;
+    }
 
     for(int i = 0 ; i<num_book ; i++)
     {

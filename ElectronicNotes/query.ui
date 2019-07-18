@@ -80,7 +80,7 @@
        <string notr="true">color: rgb(138, 226, 52);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;具体信息如下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;笔记内容(请点击左侧相应笔记标题)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -98,7 +98,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>391</width>
+     <width>311</width>
      <height>41</height>
     </rect>
    </property>
@@ -145,6 +145,22 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton_update">
+   <property name="geometry">
+    <rect>
+     <x>328</x>
+     <y>10</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(138, 226, 52);</string>
+   </property>
+   <property name="text">
+    <string>更新/显示</string>
+   </property>
   </widget>
  </widget>
  <resources/>
